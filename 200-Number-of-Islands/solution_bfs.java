@@ -13,7 +13,7 @@ public class Solution {
         }
         return count;
     }
-    public void dfs(char[][] grid,boolean[][] visited, int i,int j){
+    public void bfs(char[][] grid,boolean[][] visited, int i,int j){
         if(i>=0 && i< grid.length && j>=0 && j< grid[0].length && grid[i][j]=='1'&& !visited[i][j]){
             visited[i][j]=true;
             bfs(grid,visited,i-1,j);
