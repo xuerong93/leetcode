@@ -7,18 +7,18 @@ public class Solution {
             for(int j = 0;j < grid[0].length;j++){
                 if(!visited[i][j] && grid[i][j] == '1'){
                     count++;
-                    bfs(grid, visited, i,j);
+                    dfs(grid, visited, i,j);
                 }
             }
         }
         return count;
     }
-    public void bfs(char[][] grid,boolean[][] visited, int i,int j){
+    public void dfs(char[][] grid,boolean[][] visited, int i,int j){
         if(i<0 || i>= grid.length || j<0 || j>= grid[0].length || grid[i][j]!='1'|| visited[i][j]) return;
         visited[i][j]=true;
-        bfs(grid,visited,i-1,j);
+        dfs(grid,visited,i-1,j);
         bfs(grid,visited,i+1,j);
-        bfs(grid,visited,i,j-1);
-        bfs(grid,visited,i,j+1);
+        dfs(grid,visited,i,j-1);
+        dfs(grid,visited,i,j+1);
     }
 }
