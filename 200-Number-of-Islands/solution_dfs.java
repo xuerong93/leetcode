@@ -17,7 +17,7 @@ public class Solution {
         if(i<0 || i>= grid.length || j<0 || j>= grid[0].length || grid[i][j]!='1'|| visited[i][j]) return;
         visited[i][j]=true;
         dfs(grid,visited,i-1,j);
-        bfs(grid,visited,i+1,j);
+        dfs(grid,visited,i+1,j);
         dfs(grid,visited,i,j-1);
         dfs(grid,visited,i,j+1);
     }
