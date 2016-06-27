@@ -1,6 +1,7 @@
 public class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
         if(nums1.length==0 || nums2.length==0) return (new int[0]);
+        if(nums1.length>nums2.length)  return intersect(nums2,nums1);
         ArrayList<Integer> res= new ArrayList();
         HashMap<Integer,Integer> table= new HashMap<Integer,Integer>();
         
