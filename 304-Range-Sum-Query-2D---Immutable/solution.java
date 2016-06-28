@@ -6,10 +6,10 @@ public class NumMatrix {
         int n=matrix[0].length;
         dp=new int[m+1][n+1];
         if(m<=0 || n<=0)  return;
-        dp[0][0]=0;
-        for(int i=0;i<=m;i++){
-            for(int j=0;j<=n;j++){
-                dp[i+1][j+1]=dp[i+1][j]+dp[i][j+1]-dp[i][j]+matrix[i+1][j+1];
+        dp[0][0]=matrix[0][0];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                dp[i+1][j+1]=dp[i+1][j]+dp[i][j+1]-dp[i][j]+matrix[i][j];
                 
             }
         }
