@@ -8,24 +8,26 @@
  */
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if(l1==null) return l2;
-        if(l2==null) return l1;
-        int carry=0;
-        ListNode dummy=new ListNode(0);
-        ListNode cur=dummy;
-        while(l1!=null || l2!=null){
-            int p = (l1==null)?0:l1.val;
-            int q = (l2==null)?0:l2.val;
-            int sum = (p+q+carry)%10;
-            carry =  (p+q+carry)/10;
-            cur.next=new ListNode(sum);
-            cur=cur.next;
-            if(l1!=null) l1 = l1.next;
-            if(l2!=null) l2 = l2.next;
+        ListNode c1 = l1;
+        ListNode c2 = l2;
+        ListNode pre = new ListNode(0); // set pre head
+        ListNode d = pre;
+        int sum = 0; // the sum of two nodes
+        while (c1 != null || c2 != null) { // traverse longer list
+            if (c1 != null) { // add one list 
+                sum += c1.val;
+                c1 = c1.next; // move on 
+            }
+            if (c2 != null) { // add another list
+                sum += c2.val;
+                c2 = c2.next; // move on 
+            }
+            // build next node
+            d.next = new ListNode(sum % 10); // digit for current node
+            sum /= 10; // carry
+            d = d.next; 
         }
-        if(carry>0){
-            cur.next=new ListNode(carry);
-        }
-        return dummy.next;
+        if (sum == 1) d.next = new ListNode(1); // note that can have carry at the last digit
+        return pre.next;
     }
 }
