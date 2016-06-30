@@ -22,8 +22,9 @@ public class Solution {
         ListNode h1=pre.next;
         ListNode last=h1;
         ListNode h2=h1.next;
-        ListNode nextNode=h2.next;
+        
         while(a>0){
+            ListNode nextNode=h2.next;
             h2.next=h1;
             h1=h2;
             h2=nextNode;
