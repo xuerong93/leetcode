@@ -24,14 +24,14 @@ public class Solution {
             prev.next=l1;
             if(l2!=null){
                 l2=l2.next;
-            }
+            }else break;
             }
             else{
                 prev=l1;
                 l1=l2;
                 if(l2!=null){
                     l2=l2.next;
-                }
+                }else break;
             }
         }
         return dummy.next;
