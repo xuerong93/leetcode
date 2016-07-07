@@ -6,10 +6,10 @@ public class Solution {
         int count=0;
         for(int i=0;i<numRows;i++){
             int interval=2*(numRows-1)-2*i;
-            for(int j=i;j<length;j+=2*(numRows-1)){
+            for(int j=i;j<s.length();j+=2*(numRows-1)){
                 res.append(s.charAt(j));
                 count++;
-                if(interval>0 &&　interval<2*(numRows-1) && j+interval<length && count<length ){
+                if(interval>0 && interval<2*(numRows-1) && j+interval<s.length() && count<s.length() ){
                     res.append(s.charAt(j+interval));
                     count++;
                 }
