@@ -1,34 +1,49 @@
 public class Solution {
     public int myAtoi(String str) {
-        if(str==null || str.length()==0) return 0;
-        str = str.trim();
-        double result = 0 ;
-        if(str.charAt(0)-'0'>=0 && str.charAt(0)<='9'){
-            int i=0;
-            while(str.length()>i && str.charAt(i)-'0'>=0 && str.charAt(i)-'0'<=9){
-                result = 10*result+(str.charAt(i)-'0');
-                i++;
-            }
+        //too slow
+        str=str.trim();
+        HashSet<Character> s1=new HashSet<Character>();
+        char[] nums={'0','1','2','3','4','5','6','7','8','9'};
+        for(char num : nums){
+            s1.add(num);
         }
-        if(str.charAt(0)=='+' || str.charAt(0)=='-'){
-            if(str.charAt(0)=='+'){
-                int i=1;
-                while(str.length()>i && str.charAt(i)-'0'>=0 && str.charAt(i)-'0'<=9){
-                    result = 10*result+(str.charAt(i)-'0');
-                    i++;
+        HashSet<Character> s2=new HashSet<Character>();
+        s2.add('+');
+        s2.add('-');
+        if(str==null || str.length()==0 || (!s1.contains(str.charAt(0)) && !s2.contains(str.charAt(0)))){
+            return 0;
+        }
+        int sign=1;
+        if(str.charAt(0)=='-'){
+            sign=-1;
+        }
+        long num=0;
+        if(s2.contains(str.charAt(0))){
+            for(int i = 1;i<str.length();i++){
+                if(s1.contains(str.charAt(i))){
+                    num=num*10+str.charAt(i)-'0';
+                    if(num*sign>Integer.MAX_VALUE) return Integer.MAX_VALUE;
+                    if(num*sign<Integer.MIN_VALUE) return Integer.MIN_VALUE;
+                }
+                else{
+                    break;
                 }
             }
-            else{
-                int i=1;
-                while(str.length()>i && str.charAt(i)-'0'>=0 && str.charAt(i)-'0'<=9){
-                    result = 10*result-(str.charAt(i)-'0');
-                    i++;
+        }
+        if(s1.contains(str.charAt(0))){
+            for(int i = 0;i<str.length();i++){
+                if(s1.contains(str.charAt(i))){
+                    num=num*10+str.charAt(i)-'0';
+                    if(num*sign>Integer.MAX_VALUE) return Integer.MAX_VALUE;
+                    if(num*sign<Integer.MIN_VALUE) return Integer.MIN_VALUE;
+                }
+                else{
+                    break;
                 }
             }
         }
+        num=num*sign;
         
-        if(result>Integer.MAX_VALUE) return Integer.MAX_VALUE;
-        if(result<Integer.MIN_VALUE) return Integer.MIN_VALUE;
-        return (int) result;
+        return (int) num;
     }
 }
