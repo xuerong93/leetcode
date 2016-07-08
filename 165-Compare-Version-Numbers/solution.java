@@ -10,11 +10,11 @@ public class Solution {
                 i++;
             }
             while(i<part1.length){
-                if(Integer.parseInt(part1[i])>0) return 1;
+                if(Integer.parseInt(part1[i])!=0) return 1;
                 i++;
             }
             while(i<part2.length){
-                if(Integer.parseInt(part2[i])>0) return -1;
+                if(Integer.parseInt(part2[i])!=0) return -1;
                 i++;
             }
         }
