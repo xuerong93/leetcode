@@ -9,11 +9,13 @@ public class Solution {
                 else if(Integer.parseInt(part1[i])<Integer.parseInt(part2[i])) return -1;
                 i++;
             }
-            if(i<part1.length){
+            while(i<part1.length){
                 if(Integer.parseInt(part1[i])>0) return 1;
+                i++;
             }
-            if(i<part2.length){
+            while(i<part2.length){
                 if(Integer.parseInt(part2[i])>0) return -1;
+                i++;
             }
         }
         return 0;
