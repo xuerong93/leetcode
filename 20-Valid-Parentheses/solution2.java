@@ -8,7 +8,8 @@ public class Solution {
                 stack.push(s.charAt(i));
                 continue;
             }
-            if(!((stack.pop()=='(' && s.charAt(i)==')') || (stack.pop()=='{' &&s.charAt(i)=='}') || (stack.pop()=='[' &&s.charAt(i)==']'))}{
+            char cpop=stack.pop();
+            if(!(cpop=='(' && s.charAt(i)==')') || (cpop=='{' &&s.charAt(i)=='}') || (cpop=='[' &&s.charAt(i)==']'))}{
                 return false;
             }
         }
