@@ -9,7 +9,7 @@ public class Solution {
                 continue;
             }
             char cpop=stack.pop();
-            if((cpop=='(' && s.charAt(i)!=')') || (cpop=='{' &&s.charAt(i)!='}') || (cpop=='[' &&s.charAt(i)!=']'))}{
+            if((cpop=='(' && s.charAt(i)!=')') || (cpop=='{' &&s.charAt(i)!='}') || (cpop=='[' &&s.charAt(i)!=']')){
                 return false;
             }
         }
