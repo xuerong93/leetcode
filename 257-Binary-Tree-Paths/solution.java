@@ -8,15 +8,16 @@
  * }
  */
 public class Solution {
-    public List<String> path = new ArrayList<String>();
+    List<String> res=new ArrayList<String>();
     public List<String> binaryTreePaths(TreeNode root) {
-        if(root != null) findPath(root, String.valueOf(root.val));
-        return path;
+        if(root==null) return res;
+        findPath(root,String.valueOf(root.val));
+        return res;
+        
     }
-    
-    public void findPath(TreeNode root, String value){
-        if(root.left==null && root.right == null) path.add(value);
-        if(root.left!=null)  findPath(root.left,value +"->"+root.left.val);
-        if(root.right!=null)  findPath(root.right,value+"->"+root.right.val);
+    public void findPath(TreeNode node, String str){
+        if(node.left==null && node.right==null) res.add(str);
+        if(node.left!=null) findPath(node.left,str+"->"+String.valueOf(node.left.val));
+        if(node.right!=null) findPath(node.right,str+"->"+String.valueOf(node.right.val));
     }
 }
