@@ -17,7 +17,7 @@ public class Solution {
     public void inorder(TreeNode root){
         if(root==null) return;
         if(root.left!=null) inorder(root.left);
-        list.add(root.val);
+        res.add(root.val);
         if(root.right!=null) inorder(root.right);
     }
 }
