@@ -5,7 +5,8 @@ public class Solution {
         while(n!=1){
             int sum=0;
             while(n!=0){
-                sum+=(int)(Math.pow((double)n%10, 2.0));
+                int remain = n%10;
+                sum+=remain * remain;
                 n=n/10;
             }
             n=sum;
