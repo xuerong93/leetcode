@@ -10,8 +10,8 @@ public class Solution {
                 n=n/10;
             }
             n=sum;
-            if(set.contains(sum)) return false;
-            else set.add(sum);
+            if(!set.add(sum)) return false;
+           
         }
         return true;
     }
