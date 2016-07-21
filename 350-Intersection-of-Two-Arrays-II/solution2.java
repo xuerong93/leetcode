@@ -1,6 +1,6 @@
 public class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        if(nums1==null || nums2==null) return int[];
+        if(nums1==null || nums2==null) return new int[];
         Arrays.sort(nums1);
         Arrays.sort(nums2);
         int i=0;
