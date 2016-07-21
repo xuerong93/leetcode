@@ -1,5 +1,6 @@
 public class Solution {
     public String minWindow(String s, String t) {
+        //双指针，动态维护一个区间。尾指针不断往后扫，当扫到有一个窗口包含了所有T的字符后，然后再收缩头指针，直到不能再收缩为止。最后记录所有可能的情况中 窗口最小的
         String res="";
         if(s==null || t==null) return res;
         
