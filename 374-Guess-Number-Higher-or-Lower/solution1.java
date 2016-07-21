@@ -9,9 +9,10 @@ public class Solution extends GuessGame {
         int end=n;
         int mid;
         while(start<=end){
-            mid=(end+start)/2;
-            if(guess(mid)==0) return mid;
-            else if(guess(mid)==1) start=mid+1;
+            mid=((end-start)>>1)+start;
+            int guess=guess(mid);
+            if(guess==0) return mid;
+            else if(guess==1) start=mid+1;
             else end=mid-1;
         }
         return end;
