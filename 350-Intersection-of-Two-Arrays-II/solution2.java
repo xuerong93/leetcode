@@ -17,8 +17,8 @@ public class Solution {
             else j++;
         }
         int[] res=new int[index];
-        for(int i=0;i<index;i++){
-            res[i]=temp[i];
+        for(int k=0;k<index;k++){
+            res[k]=temp[k];
         }
         return res;
     }
