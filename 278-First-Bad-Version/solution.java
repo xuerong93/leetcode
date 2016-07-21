@@ -9,11 +9,9 @@ public class Solution extends VersionControl {
         while(start<=end){
             mid=((end-start)>>1)+start;
             if(isBadVersion(mid)){
-                if(mid-1>=start && !isBadVersion(mid-1)) return mid;
                 end=mid-1;
             } 
             else{
-                if(mid+1<=end && isBadVersion(mid+1)) return mid+1;
                 start=mid+1;
             } 
         }
