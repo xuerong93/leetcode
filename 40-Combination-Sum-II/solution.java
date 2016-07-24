@@ -7,10 +7,10 @@ public class Solution {
         combinationSum2(candidates,target,0,res,item);
         return res;
     }
-    public void combinationSum2(int[] candidates, int target, int index, List<List<Intger>> res, List<Integer> item){
+    public void combinationSum2(int[] candidates, int target, int index, List<List<Integer>> res, List<Integer> item){
         if(target==0){
             List<Integer> temp = new ArrayList<Integer>();
-            res.add(item);
+            res.add(temp);
             return;
         }
         
