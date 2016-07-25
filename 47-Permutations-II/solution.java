@@ -16,7 +16,7 @@ public class Solution {
             return;
         }
         for(int i=0;i<nums.length;i++){
-            if(visited[i] || (i>0 && nums[i]==nums[i-1] && !visited[i-1]) continue;
+            if(visited[i] || (i>0 && nums[i]==nums[i-1] && !visited[i-1])) continue;
             item.add(nums[i]);
             visited[i]=true;
             permuteUnique(res,item,nums,index+1,visited);
