@@ -29,13 +29,14 @@ public class RandomizedCollection {
         int rmindex= set.iterator().next();
         //remove the index from set
         set.remove(rmindex);
-        if(rmindex!=data.size()-1){
+        if(rmindex<data.size()-1){
+            int lastNum = data.size()-1;
             //data need to be transfered,the last element of data list
-            int chdata = data.get(data.size()-1);
+            int chdata = data.get(lastNum);
             //move the last element to the deleted position
-            data.set(rmindex,data.size()-1);
+            data.set(rmindex,lastNum);
             //cahnge the set of last element in datalist
-            map.get(chdata).remove(data.size()-1);
+            map.get(chdata).remove(lastNum);
             map.get(chdata).add(rmindex);
         }
         data.remove(data.size()-1);
