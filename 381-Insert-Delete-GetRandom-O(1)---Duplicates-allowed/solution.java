@@ -11,7 +11,7 @@ public class RandomizedCollection {
     public boolean insert(int val) {
 
            data.add(val);
-           HashSet<Integer> newset = (map.containsKey)?map.get(val):new HashSet<Integer>();
+           HashSet<Integer> newset = (map.containsKey(val))?map.get(val):new HashSet<Integer>();
            newset.add(data.size()-1);
            map.put(val,newset);
            return newset.size()==1;
