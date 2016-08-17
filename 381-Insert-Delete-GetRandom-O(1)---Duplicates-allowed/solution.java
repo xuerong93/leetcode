@@ -11,10 +11,7 @@ public class RandomizedCollection {
     public boolean insert(int val) {
 
            data.add(val);
-           HashSet<Integer> newset =new HashSet<Integer>();
-           if(map.containsKey(val)){
-                newset = map.get(val);
-           }
+           HashSet<Integer> newset = (map.containsKey)?map.get(val):new HashSet<Integer>();
            newset.add(data.size()-1);
            map.put(val,newset);
            return newset.size()==1;
@@ -24,21 +21,26 @@ public class RandomizedCollection {
     
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
     public boolean remove(int val) {
+        //does not contain the value, cannot remove
         if(!map.containsKey(val)){return false;}
+        
+        //get one of the val index
         set = map.get(val);
         int rmindex= set.iterator().next();
+        //remove the index from set
         set.remove(rmindex);
         if(rmindex!=data.size()-1){
+            //data need to be transfered,the last element of data list
             int chdata = data.get(data.size()-1);
-            data.remove(rmindex);
-            data.add(rmindex,data.size()-1);
-            
+            //move the last element to the deleted position
+            data.set(rmindex,data.size()-1);
+            //cahnge the set of last element in datalist
             map.get(chdata).remove(data.size()-1);
             map.get(chdata).add(rmindex);
         }
         data.remove(data.size()-1);
         
-        if(set.size()==0) map.remove(val);
+        if(map.get(val).size()==0) map.remove(val);
         return true;
     }
     
