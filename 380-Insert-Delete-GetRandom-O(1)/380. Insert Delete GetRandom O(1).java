@@ -13,7 +13,8 @@ public class RandomizedSet {
         } 
         else{
             data.add(val);
-            map.put(val,data.size()-1);
+            int last =data.size()-1;
+            map.put(val,last);
             return true;
         } 
     }
@@ -24,45 +25,27 @@ public class RandomizedSet {
             return false;
         } 
         else {
-           /* //remove value from arraylist
-            data.remove(map.get(val));
-            if(data.size()!=0){
-                //save the index of val
-                int index=map.get(val);
-                //save the value of the last element of arraylist
-                int value = data.get(data.size()-1);
-                data.remove(data.size()-1);
-                data.add(index,value);
-                map.put(value,index);
-                //remove val from hashmap
-                map.remove(val);
-                //update the value of the last element inthe arraylist
-                //map.put(value,index);
-            }else{
-                map.remove(val);
-            }*/
-            
-
-                
-                int index=map.get(val);
-                int value = data.get(data.size()-1);
-                data.remove(index);
-                if(!data.isEmpty()){
-                    data.remove(data.size()-1);
-                    data.add(index,value);
-                }
-                map.put(value,index);
-                map.remove(val);
+          int index=map.get(val);
+          if(index==data.size()-1){
+              map.remove(val);
+              data.remove(data.size()-1);
+          }else{
+            data.remove(index);
+            data.add(index,data.get(data.size()-1));
+            data.remove(data.size()-1);
+            map.remove(val);
+            map.put(data.get(index),index);
+          }
 
 
-            return true;
+        return true;
         }
         
     }
     
     /** Get a random element from the set. */
     public int getRandom() {
-        int i= (int) Math.random() % data.size();
+        int i= ((int) (Math.random()*data.size())) % data.size();
         return data.get(i);
     }
 }
