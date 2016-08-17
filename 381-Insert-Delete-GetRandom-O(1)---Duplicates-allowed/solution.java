@@ -32,13 +32,11 @@ public class RandomizedCollection {
             int chdata = data.get(data.size()-1);
             data.remove(rmindex);
             data.add(rmindex,data.size()-1);
-            data.remove(data.size()-1);
+            
             map.get(chdata).remove(data.size()-1);
             map.get(chdata).add(rmindex);
-            
-            
         }
-        data.remove(rmindex);
+        data.remove(data.size()-1);
         
         if(set.size()==0) map.remove(val);
         return true;
