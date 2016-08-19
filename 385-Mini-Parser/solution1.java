@@ -28,7 +28,7 @@
  */
 public class Solution {
     public NestedInteger deserialize(String s) {
-       public NestedInteger deserialize(String s) {  
+
     Stack<NestedInteger> stack = new Stack<NestedInteger>();  
     String tokenNum = "";  
   
@@ -60,7 +60,7 @@ public class Solution {
     if (!tokenNum.equals(""))//特殊case: 如果字符串只包含数字的情况  
         return new NestedInteger(Integer.parseInt(tokenNum));  
     return null;  
-}  
+    }  
         
-    }
+
 }
