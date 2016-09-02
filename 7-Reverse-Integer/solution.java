@@ -8,8 +8,8 @@ public class Solution {
             temp = temp*10+n%10;
             n/=10;
         }
-        if(bol) res=res*(-1);
-        if(res>Integer.MAX_VALUE || res<Integer.MIN_VALUE) return 0;
-        return (int) res;
+        if(bol) temp=temp*(-1);
+        if(temp>Integer.MAX_VALUE || temp<Integer.MIN_VALUE) return 0;
+        return (int) temp;
     }
 }
