@@ -3,13 +3,18 @@ public class Solution {
         if(n==0) return 0;
         boolean bol = (n<0);
         n=Math.abs(n);
-        long temp=0;
+        int reversed_n = 0;
         while(n>0){
-            temp = temp*10+n%10;
+            int temp = reversed_n ;
+            reversed_n = temp*10+n%10;
+            if(reversed_n/10 != temp){
+                reversed_n = 0;
+                break;
+            }
             n/=10;
         }
-        if(bol) temp=temp*(-1);
-        if(temp>Integer.MAX_VALUE || temp<Integer.MIN_VALUE) return 0;
-        return (int) temp;
+        if(bol) reversed_n = reversed_n*(-1);
+
+        return reversed_n;
     }
 }
