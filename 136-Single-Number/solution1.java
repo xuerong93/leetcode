@@ -1,16 +1,12 @@
 public class Solution {
     public int singleNumber(int[] nums) {
-        //using extra space
-        if(nums.length<=0) return 0;
-        HashSet<Integer> set = new HashSet<Integer>();
-        for(int i=0 ; i<nums.length;i++){
-            int a = nums[i];
-            if(!set.contains(a)){
-                set.add(a);
-            }else{
-                set.remove(a);
-            }
+        //without extra space
+        //use xor because the same number xor is 0
+        int a =0 ;
+        for(int i = 0; i < nums.length; i++){
+            a=a^nums[i];
         }
-        return set.iterator().next();
+        return a;
+        
     }
 }
