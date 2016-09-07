@@ -8,33 +8,40 @@
  */
 public class Solution {
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        if(head==null) return null;
-        if(head.next==null) return head;
-        ListNode dummy = new ListNode(0);
-        dummy.next=head;
-        int a= n-m;
-        ListNode pre=dummy;
-        
+        ListNode start =new ListNode(0);
+        start.next = head;
+        ListNode pre = start;
+        ListNode newEnd = pre;
+        ListNode newStart = pre;
         while(m>1){
-            pre=pre.next;
+            newEnd = newEnd.next;
             m--;
         }
-        ListNode h1=pre.next;
-        ListNode last=h1;
-        ListNode h2=h1.next;
-        
-        while(a>0){
-            ListNode nextNode=h2.next;
-            h2.next=h1;
-            h1=h2;
-            h2=nextNode;
-            a--;
-            if(nextNode!=null){
-                nextNode=nextNode.next;
+        pre = newEnd;
+        newEnd = newEnd.next;
+        while(n>0){
+            newStart = newStart.next;
+            n--;
+        }
+        ListNode newNext = newStart.next;
+        pre.next = newStart;
+        newStart.next = null;
+        reverse(newEnd);
+        newEnd.next = newNext;
+        return start.next;
+    }
+    public void reverse(ListNode newEnd){
+        if(newEnd==null || newEnd.next ==null) return;
+        ListNode pre = newEnd;
+        ListNode cur = pre.next;
+        ListNode next = cur.next;
+        while(cur!=null){
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+            if(next!=null){
+                next = next.next;
             }
         }
-        last.next=h2;
-        pre.next=h1;
-        return dummy.next;
     }
 }
