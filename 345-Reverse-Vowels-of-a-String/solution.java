@@ -18,6 +18,8 @@ public class Solution {
             if(i<j){
                 swap(arr,i,j);
             }
+            i++;
+            j--;
         }
         return new String(arr);
     }
