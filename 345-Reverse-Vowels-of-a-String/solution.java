@@ -9,10 +9,10 @@ public class Solution {
         int i = 0;
         int j = length-1;
         while(i<j){
-            while(!set.contains(arr[i])){
+            while(i<length && !set.contains(arr[i])){
                 i++;
             }
-            while(!set.contains(arr[j])){
+            while(j>=0 && !set.contains(arr[j])){
                 j--;
             }
             if(i<j){
