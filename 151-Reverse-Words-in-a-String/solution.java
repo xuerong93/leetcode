@@ -14,4 +14,9 @@ public class Solution {
         sb.append(arr[length-1]);
         return sb.toString(sb);
     }
+    public void swap(String[] arr, int i, int j){
+        String temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] =temp;
+    }
 }
