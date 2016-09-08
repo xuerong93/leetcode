@@ -1,40 +1,29 @@
 public class Solution {
     public String reverseVowels(String s) {
-        char[] vowel="aeiouAEIOU".toCharArray();
-        int length=s.length();
-        char[] store=s.toCharArray();
-        int i=0;
-        int j=length-1;
+        if(s==null || s.length() == 0 || s.length() == 1) return s;
+        int length = s.length();
+        HashSet<Character> set = new HashSet<Character>();
+        set.add('a');set.add('e');set.add('i');set.add('o');set.add('u');
+        set.add('A');set.add('E');set.add('I');set.add('O');set.add('U');
+        char[] arr = s.toCharArray();
+        int i = 0;
+        int j = length-1;
         while(i<j){
-            int k=0;
-            int m=0;
-            while(k<10){
-                if(store[i]==vowel[k]) break;
-                if(k==9){
-                    i++;
-                    k=-1;
-                }
-                if(i>length-1) break;
-                k++;
+            while(!set.contains(arr[i])){
+                i++;
             }
-            while(m<10){
-                if(store[j]==vowel[m]) break;
-                if(m==9){
-                    j--;
-                    m=-1;
-                }
-                if(j<0) break;
-                m++;
+            while(!set.contains(arr[j])){
+                j--;
             }
             if(i<j){
-                char temp=store[i];
-                store[i]=store[j];
-                store[j]=temp;
+                swap(arr,i,j);
             }
-            
-            i++;
-            j--;
         }
-        return new String(store);
+        return new String(arr);
+    }
+    public void swap(char[] arr, int i, int j){
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }
