@@ -12,7 +12,7 @@ public class Solution {
             sb.append(' ');
         }
         sb.append(arr[length-1]);
-        return sb.toString(sb);
+        return sb.toString();
     }
     public void swap(String[] arr, int i, int j){
         String temp = arr[i];
