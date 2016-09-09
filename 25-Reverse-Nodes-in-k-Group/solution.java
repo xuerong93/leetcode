@@ -8,36 +8,43 @@
  */
 public class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        //validate the input
-        if(head==null || head.next==null || k<0) return head;
-        //special case
-        if(k==0 || k==1) return head;
-        //initialize a dummy node for return
-        ListNode dummy=new ListNode(0);
-        dummy.next=head;
-        ListNode pre=dummy;//current group's dummy node
-        ListNode cur=head;//current group's head node;
-        //stop when cur node is null
-        while(cur!=null){
-            //the next group's starting point p
-            ListNode p=pre.next;
-            int group=k;
-            while(p!=null && group>0){
-                p=p.next;
-                group--;
+        ListNode start = new ListNode(0);
+        start.next = head;
+        ListNode pre = start;
+        ListNode newEnd = pre.next;
+        ListNode newStart = newEnd;
+        while(newStart!=null){
+            for(int i=0; i<k-1; i++){
+                if(newStart == null) break;
+                newStart = newStart.next;
             }
-            if(group>0){//p is null, the remainging part length is less than k,no need to continue
-                break;
+            if(newStart != null){
+                ListNode newNext =newStart.next;
+                pre.next = newStart;
+                newStart.next = null;
+                reverseList(newEnd);
+                newEnd.next = newNext;
+                pre  = newEnd;
+                newEnd = pre.next;
+                newStart = newEnd;
             }
-            while(cur.next!=p){
-                ListNode nt=cur.next.next;
-                cur.next.next=pre.next;
-                pre.next=cur.next;
-                cur.next=nt;
-            }
-            pre=cur;
-            cur=cur.next;
+            
         }
-        return dummy.next;
+        
+        
+        return start.next;
+    }
+    public void reverseList(ListNode head){
+        if(head == null || head.next == null) return;
+        ListNode pre = head;
+        ListNode cur = head.next;
+        ListNode next = cur.next;
+        while(cur!=null){
+            cur.next = pre;
+            pre = cur; cur = next;
+            if(next!=null){
+                next = next.next;
+            }
+        }
     }
 }
