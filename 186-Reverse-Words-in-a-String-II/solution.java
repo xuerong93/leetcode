@@ -1,5 +1,6 @@
 public class Solution {
     public void reverseWords(char[] s) {
+        // don't care about how many whitespaces are between two words
          if (s == null || s.length==0 || s.length ==1) return;
          int length = s.length;
          int i = 0;
