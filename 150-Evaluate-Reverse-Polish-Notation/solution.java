@@ -2,6 +2,7 @@ public class Solution {
     public int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<Integer>();
         int length = tokens.length;
+        if(length == 1) return Integer.valueOf(tokens[0]);
         HashSet<String> set = new HashSet<String>();
         set.add("+");
         set.add("-");
