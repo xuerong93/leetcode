@@ -1,6 +1,6 @@
 public class Solution {
     public void reverseWords(char[] s) {
-         if (s = null || s.length==0 || s.length ==1) return;
+         if (s == null || s.length==0 || s.length ==1) return;
          int length = s.length;
          int i = 0;
          for(int j=0;j<length;j++){
