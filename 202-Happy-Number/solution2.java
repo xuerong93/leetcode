@@ -2,6 +2,7 @@ public class Solution {
     
     public boolean isHappy(int n) {
         HashMap<Integer,Boolean> map = new HashMap<Integer,Boolean>();
+        map.put(1,true);
         if(map.containsKey(n)){
             return map.get(n);
         }
