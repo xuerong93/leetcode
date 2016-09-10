@@ -7,7 +7,7 @@ public class Solution {
         }
         map.put(n,false);
         boolean res = isHappy(transform(n));
-        map.repalce(n,res);
+        map.add(n,res);
         return res;
     }
     public int transform(int n){
