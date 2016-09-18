@@ -1,35 +1,32 @@
 public class Solution {
     public int maxProfit(int k, int[] prices) {
-        if (k == 0) {
-            return 0;
-        }
-        if (k >= prices.length / 2) {
-            int profit = 0;
-            for (int i = 1; i < prices.length; i++) {
-                if (prices[i] > prices[i - 1]) {
-                    profit += prices[i] - prices[i - 1];
-                }
-            }
-            return profit;
-        }
-        int n = prices.length;
-        int[][] mustsell = new int[n + 1][n + 1];   // mustSell[i][j] 表示前i天，至多进行j次交易，第i天必须sell的最大获益
-        int[][] globalbest = new int[n + 1][n + 1];  // globalbest[i][j] 表示前i天，至多进行j次交易，第i天可以不sell的最大获益
+        if(prices == null || prices.length <2) return 0;
+        if(prices.length<=k) return maxProfit2(prices);
+        //T[i][j], i is the transaction num and j is the day, it is the max of T[i][j-1](no transaction on jth day) or (T[i-1][m]+prices[j]-prices[m], m is the buying day)
+        //for the same j, prices[j] is constant, the change thing is T[i-1][m]-prices[m]
+        int[][] maxProfit = new int[k+1][prices.length];
         
-        mustsell[0][0] = globalbest[0][0] = 0;
-        for (int i = 1; i <= k; i++) {
-            mustsell[0][i] = globalbest[0][i] = 0;
-        }
-        
-        for (int i = 1; i < n; i++) {
-            int gainorlose = prices[i] - prices[i - 1];
-            mustsell[i][0] = 0;
-            for (int j = 1; j <= k; j++) {
-                mustsell[i][j] = Math.max(globalbest[(i - 1)][j - 1] + gainorlose,
-                                            mustsell[(i - 1)][j] + gainorlose);
-                globalbest[i][j] = Math.max(globalbest[(i - 1)][j], mustsell[i ][j]);
+        for(int i = 1;i<=k; i++){
+            for(int j=1; j<prices.length;j++){
+                 int maxVal = 0;
+                 for(int m = 0; m < j ;m++){
+                     
+                     maxVal = Math.max(maxVal, maxProfit[i-1][m] + prices[j] - prices[m]);
+                 }
+                 maxProfit[i][j] = Math.max(maxProfit[i][j-1],maxVal);
             }
         }
-        return globalbest[(n - 1)][k];
+        return maxProfit[k][prices.length-1];
+    }
+    public int maxProfit2(int[] prices) {
+        int maxProfit = 0;
+        
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1]) {
+                maxProfit += prices[i] - prices[i - 1];
+            }
+        }
+        
+        return maxProfit;
     }
 }
