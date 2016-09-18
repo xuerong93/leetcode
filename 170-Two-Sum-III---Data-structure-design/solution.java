@@ -13,7 +13,7 @@ public class TwoSum {
 	public boolean find(int value) {
 	    for(int i: addNum.keySet()){
 	        int j = value - i;
-	        if(addNum.contains(j)){
+	        if(addNum.containsKey(j)){
 	            if(i == j && addNum.get(i)<2){
 	                continue;
 	            }
