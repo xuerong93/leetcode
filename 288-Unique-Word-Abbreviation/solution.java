@@ -4,7 +4,7 @@ public class ValidWordAbbr {
         for(String word : dictionary){
             String s = word;
             int length = word.length();
-            if(length>2) 
+            if(length>2) {
                 s = word.charAt(0)+Integer.toString(word.length()-2)+word.charAt(word.length()-1);
             } 
             if(map.containsKey(s)){
@@ -20,9 +20,9 @@ public class ValidWordAbbr {
 
     public boolean isUnique(String word) {
         int length = word.length();
-        if(length<2) return !map.containsKey(word);
         String s = word.charAt(0)+Integer.toString(word.length()-2)+word.charAt(word.length()-1);
-        return !map.containsKey(word);
+        if(!map.containsKey(s)) return true;
+        else return map.get(s).contains(word);
     }
 }
 
