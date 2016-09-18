@@ -1,11 +1,10 @@
 public class ValidWordAbbr {
     HashMap<String,HashSet> map = new HashMap<String,HashSet>();
     public ValidWordAbbr(String[] dictionary) {
-        for(word : dictionary){
-            String s = "";
+        for(String word : dictionary){
+            String s = word;
             int length = word.length();
-            if(length<=2) {s=word;}
-            else{
+            if(length>2) 
                 s = word.charAt(0)+Integer.toString(word.length()-2)+word.charAt(word.length()-1);
             } 
             if(map.containsKey(s)){
@@ -21,9 +20,9 @@ public class ValidWordAbbr {
 
     public boolean isUnique(String word) {
         int length = word.length();
-        if(length<2) return map.contains(word);
+        if(length<2) return !map.containsKey(word);
         String s = word.charAt(0)+Integer.toString(word.length()-2)+word.charAt(word.length()-1);
-        return map.containsKey(word);
+        return !map.containsKey(word);
     }
 }
 
