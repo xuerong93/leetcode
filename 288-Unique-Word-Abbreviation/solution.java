@@ -20,9 +20,10 @@ public class ValidWordAbbr {
 
     public boolean isUnique(String word) {
         int length = word.length();
+        if(length<=0) return true;
         String s = word.charAt(0)+Integer.toString(word.length()-2)+word.charAt(word.length()-1);
         if(!map.containsKey(s)) return true;
-        else return map.get(s).contains(word);
+        else return map.get(s).contains(word)&&map.get(s).size()<=1;
     }
 }
 
