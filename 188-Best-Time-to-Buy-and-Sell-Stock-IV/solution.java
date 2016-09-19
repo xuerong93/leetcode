@@ -1,32 +1,26 @@
 public class Solution {
     public int maxProfit(int k, int[] prices) {
-        if(prices == null || prices.length <2) return 0;
-        if(prices.length<=k) return maxProfit2(prices);
-        //T[i][j], i is the transaction num and j is the day, it is the max of T[i][j-1](no transaction on jth day) or (T[i-1][m]+prices[j]-prices[m], m is the buying day)
-        //for the same j, prices[j] is constant, the change thing is T[i-1][m]-prices[m]
-        int[][] maxProfit = new int[k+1][prices.length];
+        if (prices.length < 2) return 0;
         
-        for(int i = 1;i<=k; i++){
-            for(int j=1; j<prices.length;j++){
-                 int maxVal = 0;
-                 for(int m = 0; m < j ;m++){
-                     
-                     maxVal = Math.max(maxVal, maxProfit[i-1][m] + prices[j] - prices[m]);
-                 }
-                 maxProfit[i][j] = Math.max(maxProfit[i][j-1],maxVal);
-            }
-        }
-        return maxProfit[k][prices.length-1];
-    }
-    public int maxProfit2(int[] prices) {
-        int maxProfit = 0;
+        int days = prices.length;
+
+        //there must be a transaction on local
+        int[][] local = new int[days][k + 1];
+        //there may not be a transaction on global
+        int[][] global = new int[days][k + 1];
         
-        for (int i = 1; i < prices.length; i++) {
-            if (prices[i] > prices[i - 1]) {
-                maxProfit += prices[i] - prices[i - 1];
-            }
+        for (int i = 1; i < days ; i++) {
+            int diff = prices[i] - prices[i - 1];
+            
+            for (int j = 1; j <= k; j++) {
+                //j-1th transaction on the first i-1 days and the jth day with one transaction or   on i-1th day it sells but on ith day it also sells, the sell action can be combined 
+                local[i][j] = Math.max(global[i - 1][j - 1]+Math.max(diff,0), local[i - 1][j] + diff);
+                //global benefit may be the profit until i-1th day or the jth transcation on ith day. 
+                global[i][j] = Math.max(global[i - 1][j], local[i][j]);
+             }
         }
         
-        return maxProfit;
+        return global[days - 1][k];
     }
+ 
 }
