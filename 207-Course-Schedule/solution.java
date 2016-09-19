@@ -38,7 +38,7 @@ public class Solution {
             
             preNum[j]=-1;
             
-            if(map.containsKey(i)){
+            if(map.containsKey(j)){
                 ArrayList<Integer> list = map.get(j);
                 Iterator<Integer> it = list.iterator();
                 while(it.hasNext()){
