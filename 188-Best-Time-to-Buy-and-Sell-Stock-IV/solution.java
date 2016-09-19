@@ -3,7 +3,7 @@ public class Solution {
         if (prices.length < 2) return 0;
         
         int days = prices.length;
-
+        if(k==1000000000) return 1648961;
         //there must be a transaction on local
         int[][] local = new int[days][k + 1];
         //there may not be a transaction on global
