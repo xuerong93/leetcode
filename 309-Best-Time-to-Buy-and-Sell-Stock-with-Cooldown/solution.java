@@ -2,7 +2,9 @@ public class Solution {
     public int maxProfit(int[] prices) {
         int length = prices.length;
         if(length<2) return 0;
+        //buy[i] means have stock on day i
         int[] buy = new int[length];
+        //sell[i] means do not have stock on day i
         int[] sell = new int[length];
         buy[0]=-prices[0];
         buy[1]=Math.max(-prices[0],-prices[1]);
