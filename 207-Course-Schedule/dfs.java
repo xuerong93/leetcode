@@ -1,8 +1,8 @@
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        HashMap<Integer,ArrayList<Integer>> graph = new HashMap<Integer,ArrayList<Integer>>;
+        HashMap<Integer,ArrayList<Integer>> graph = new HashMap<Integer,ArrayList<Integer>>();
         for(int i = 0 ; i<prerequisites.length;i++){
-            ArrayList<Integer> list = new ArrayList<Integer>;
+            ArrayList<Integer> list = new ArrayList<Integer>();
             if(graph.containsKey(prerequisites[i][1])){
                 graph.get(prerequisites[i][1]).add(prerequisites[i][0]);
             }
