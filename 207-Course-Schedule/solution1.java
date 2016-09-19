@@ -19,7 +19,7 @@ public class Solution {
         int count = numCourses;
         while(!queue.isEmpty()){
             int out = queue.poll();
-            for(int i : out){
+            for(int i : list.get(out)){
                 if(--preNum[i]==0){
                     queue.add(i);
                 } 
