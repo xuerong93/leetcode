@@ -3,7 +3,7 @@ public class Solution {
         if (prices.length < 2) return 0;
         
         int days = prices.length;
-        if(k==1000000000) return 1648961;
+        if (k >= days) return maxProfit2(prices);
         //there must be a transaction on local
         int[][] local = new int[days][k + 1];
         //there may not be a transaction on global
@@ -22,5 +22,20 @@ public class Solution {
         
         return global[days - 1][k];
     }
- 
+    
+    
+    public int maxProfit2(int[] prices) {
+        int maxProfit = 0;
+        
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1]) {
+                maxProfit += prices[i] - prices[i - 1];
+            }
+        }
+        
+        return maxProfit;
+    }
+    
+    
+   
 }
