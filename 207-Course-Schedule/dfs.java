@@ -8,7 +8,7 @@ public class Solution {
             }
             else{
                 list.add(prerequisites[i][0]);
-                graph.put((prerequisites[i][1]),(prerequisites[i][0]));
+                graph.put(prerequisites[i][1],list);
             }
         }
         
