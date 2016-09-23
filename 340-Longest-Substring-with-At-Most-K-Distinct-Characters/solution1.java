@@ -1,15 +1,15 @@
 public class Solution {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
         //with treemap
-        if (str == null || str.isEmpty() || k == 0) {
+        if (s == null || s.isEmpty() || k == 0) {
                 return 0;
             }
             TreeMap<Integer, Character> lastOccurrence = new TreeMap<>();
             Map<Character, Integer> inWindow = new HashMap<>();
             int j = 0;
             int max = 1;
-            for (int i = 0; i < str.length(); i++) {
-                char in = str.charAt(i);
+            for (int i = 0; i < s.length(); i++) {
+                char in = s.charAt(i);
                 while (inWindow.size() == k && !inWindow.containsKey(in)) {
                     int first = lastOccurrence.firstKey();
                     char out = lastOccurrence.get(first);
