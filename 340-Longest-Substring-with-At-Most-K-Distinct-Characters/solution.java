@@ -8,7 +8,7 @@ public class Solution {
         for(int i=0; i < s.length(); i++){
             char c = s.charAt(i);
             
-                map.put(c,map.containsKey(c)?map.get(c)+1:1);
+            map.put(c,map.getOrDefault(c, 0) + 1);
            
             while(map.size()>k){
                 char m = s.charAt(start);
