@@ -1,5 +1,6 @@
 public class Solution {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        //use array as a hashmap
         int maxLen = 0;
         int l = 0, r = 0, cnt = 0;                     // cnt is number of unique chars between l and r
         int[] chars = new int[128];                    // chars is hash map for each char's freq
