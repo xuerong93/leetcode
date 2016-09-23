@@ -1,30 +1,29 @@
 public class Solution {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
-        //with treemap
-        if (s == null || s.isEmpty() || k == 0) {
-                return 0;
-            }
-            TreeMap<Integer, Character> lastOccurrence = new TreeMap<>();
-            Map<Character, Integer> inWindow = new HashMap<>();
-            int j = 0;
-            int max = 1;
-            for (int i = 0; i < s.length(); i++) {
-                char in = s.charAt(i);
-                while (inWindow.size() == k && !inWindow.containsKey(in)) {
-                    int first = lastOccurrence.firstKey();
-                    char out = lastOccurrence.get(first);
-                    inWindow.remove(out);
-                    lastOccurrence.remove(first);
-                    j = first + 1;
+        //use hashmap
+        if(s== null || s.length()==0) return 0;
+        if(s.length()<k) return s.length();
+        HashMap<Character, Integer> map = new HashMap<Character,Integer>();
+        int maxLen = 0;
+        int start = 0;
+        for(int i=0; i < s.length(); i++){
+            char c = s.charAt(i);
+            
+            map.put(c,map.containsKey(c)?map.get(c)+1:1);
+            
+
+                while(map.size()>k){
+                    char m = s.charAt(start);
+                    map.put(m,map.get(m)-1);
+                    if(map.get(m)==0){
+                        map.remove(m);
+                    }
+                    start++;
                 }
-                //update or add in's position in both maps
-                if (inWindow.containsKey(in)) {
-                    lastOccurrence.remove(inWindow.get(in));
-                }
-                inWindow.put(in, i);
-                lastOccurrence.put(i, in);
-                max = Math.max(max, i - j + 1);
-            }
-            return max;
+            
+                    maxLen = Math.max(maxLen, i-start+1);
+        }
+
+        return maxLen;
     }
 }
