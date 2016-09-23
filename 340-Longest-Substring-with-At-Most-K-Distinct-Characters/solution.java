@@ -8,16 +8,16 @@ public class Solution {
         for(int i=0; i < s.length(); i++){
             char c = s.charAt(i);
             
-            map.put(c,map.getOrDefault(c, 0) + 1);
+            map.put(c,map.containsKey(c)?map.get(c)+1:1);
            
             while(map.size()>k){
                 char m = s.charAt(start);
-                if(map.containsKey(m)){
+                
                    map.put(m,map.get(m)-1);
                     if(map.get(m)==0){
                         map.remove(m);
                     } 
-                }
+                
                 
                 start++;
             }
