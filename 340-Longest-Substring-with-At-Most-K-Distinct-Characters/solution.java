@@ -7,19 +7,18 @@ public class Solution {
         int start = 0;
         for(int i=0; i < s.length(); i++){
             char c = s.charAt(i);
-            if(map.containsKey(c)){
-                map.put(c,map.get(c)+1);
-            }else{
-                map.put(c,1);
-            }
-            while(map.size()>k && start<s.length()){
+            
+                map.put(c,map.containsKey(c)?map.get(c)+1:1);
+           
+            while(map.size()>k){
                 char m = s.charAt(start);
-                if(map.get(m) != 1){
-                    map.put(m,map.get(m)-1);
+                if(map.containsKey(m)){
+                   map.put(m,map.get(m)-1);
+                    if(map.get(m)==0){
+                        map.remove(m);
+                    } 
                 }
-                else{
-                    map.remove(m);
-                }
+                
                 start++;
             }
             maxLen = Math.max(maxLen, i-start+1);
