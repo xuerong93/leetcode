@@ -9,20 +9,22 @@ public class Solution {
             char c = s.charAt(i);
             
             map.put(c,map.containsKey(c)?map.get(c)+1:1);
-           
-            while(map.size()>k){
-                char m = s.charAt(start);
-                
-                   map.put(m,map.get(m)-1);
+            
+            if(map.size()>k){
+                maxLen = Math.max(maxLen, i-start);
+                while(map.size()>k){
+                    char m = s.charAt(start);
+                    map.put(m,map.get(m)-1);
                     if(map.get(m)==0){
                         map.remove(m);
-                    } 
-                
-                
-                start++;
+                    }
+                    start++;
+                }
             }
-            maxLen = Math.max(maxLen, i-start+1);
+            
+            
         }
+        maxLen = Math.max(maxLen, s.length()-start);
         return maxLen;
     }
 }
