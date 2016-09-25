@@ -16,8 +16,8 @@ public class Solution {
     }
     public void bfs(char[][] grid, int i, int j){
         
-        int m = grid.length;
-        int n = grid[0].length;
+        int n = grid.length;
+        int m = grid[0].length;
         //the linkedList stores an integer which represents 2D location 
         Queue<Integer> queue = new LinkedList<Integer>();
         queue.add(i*m+j);
@@ -30,7 +30,7 @@ public class Solution {
                 queue.add((k-1)*m+l);
                 grid[k-1][l]='0';
             }
-            if(k+1<m && grid[k+1][l]=='1'){
+            if(k+1<n && grid[k+1][l]=='1'){
                 queue.add((k+1)*m+l);
                 grid[k+1][l]='0';
             }
@@ -38,7 +38,7 @@ public class Solution {
                 queue.add(k*m+l-1);
                 grid[k][l-1]='0';
             }
-            if(l+1<n && grid[k][l+1]=='1'){
+            if(l+1<m && grid[k][l+1]=='1'){
                 queue.add(k*m+l+1);
                 grid[k][l+1]='0';
             }
