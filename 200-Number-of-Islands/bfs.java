@@ -15,27 +15,33 @@ public class Solution {
         return count;
     }
     public void bfs(char[][] grid, int i, int j){
+        
         int m = grid.length;
         int n = grid[0].length;
         //the linkedList stores an integer which represents 2D location 
         Queue<Integer> queue = new LinkedList<Integer>();
         queue.add(i*m+j);
+        grid[i][j]='0';
         while(!queue.isEmpty()){
             int sum = queue.poll();
-            grid[sum/m][sum%m]='0';
-            if(sum/m-1>0 && grid[sum/m-1][sum%m]=='1'){
-                queue.add((sum/m-1)*m+sum%m);
+            int k = sum/m;
+            int l = sum%m;
+            if(k-1>=0 && grid[k-1][l]=='1'){
+                queue.add((k-1)*m+l);
+                grid[k-1][l]='0';
             }
-            if(sum/m+1<m && grid[sum/m+1][sum%m]=='1'){
-                queue.add((sum/m+1)*m+sum%m);
+            if(k+1<m && grid[k+1][l]=='1'){
+                queue.add((k+1)*m+l);
+                grid[k+1][l]='0';
             }
-            if(sum%m-1>0 && grid[sum/m][sum%m-1]=='1'){
-                queue.add((sum/m)*m+sum%m-1);
+            if(l-1>=0 && grid[k][l-1]=='1'){
+                queue.add(k*m+l-1);
+                grid[k][l-1]='0';
             }
-            if(sum%m+1<n && grid[sum/m][sum%m+1]=='1'){
-                queue.add((sum/m)*m+sum%m+1);
+            if(l+1<n && grid[k][l+1]=='1'){
+                queue.add(k*m+l+1);
+                grid[k][l+1]='0';
             }
         }
-        return;
     }
 }
