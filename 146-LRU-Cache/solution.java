@@ -22,8 +22,8 @@ public class LRUCache {
     }
     
     public int get(int key) {
-        if(map.containsKey(key)){
-            Node res = map.get(key);
+        if(keyVal.containsKey(key)){
+            Node res = keyVal.get(key);
             remove(res);
             //the least recently used element is in the head of the list and the most recent one is in the end
             AddToTail(res);
