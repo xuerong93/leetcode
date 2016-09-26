@@ -34,13 +34,11 @@ public class LRUCache {
     public void remove(Node res){
         if(res.pre!=null){
             res.pre.next = res.next;
-            res.next.pre = res.pre;
         }else{
             head = res.next;
         }
         
         if(res.next!=null){
-            res.pre.next = res.next;
             res.next.pre = res.pre;
         }else{
             tail = res.pre;
@@ -61,6 +59,8 @@ public class LRUCache {
     public void set(int key, int value) {
         if(keyVal.containsKey(key)){
             Node old = keyVal.get(key);
+            //an important expression, if the key is the same but the value is not the same
+            old.value = value;
             remove(old);
             AddToTail(old);
         }else{
