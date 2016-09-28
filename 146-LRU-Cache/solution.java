@@ -67,8 +67,9 @@ public class LRUCache {
             if(map.size()<capacity){
                 addTail(newNode);
             }else{
-                deleteNode(head);
                 map.remove(head.key);
+                deleteNode(head);
+                
                 addTail(newNode);
             }
         }
