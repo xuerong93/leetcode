@@ -23,7 +23,7 @@ public class LRUCache {
     }
     
     public int get(int key) {
-        if(map.contains(key)){
+        if(map.containsKey(key)){
             Node old = map.get(key);
             deleteNode(old);
             addTail(old);
@@ -59,7 +59,7 @@ public class LRUCache {
     }
     public void set(int key, int value) {
         Node newNode = new Node(key,value);
-        if(map.get(key)){
+        if(map.containsKey(key)){
             Node old = map.get(key);
             deleteNode(old);
             addTail(newNode);
