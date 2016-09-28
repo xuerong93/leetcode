@@ -3,7 +3,7 @@ class TrieNode {
     private TrieNode[] links;
     //all element start with lowercase alpbet
     private final int R = 26;
-    private boolean isEnd
+    private boolean isEnd;
     // Initialize your data structure here.
     public TrieNode() {
         links = new TrieNode[R];
