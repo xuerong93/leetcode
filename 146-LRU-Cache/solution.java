@@ -1,78 +1,77 @@
+
+//create a node which implement a double linked list
 class Node{
     int key;
-    int val;
-    Node pre;
+    int value;
     Node next;
+    Node prev;
+    
     public Node(int key, int value){
         this.key = key;
-        this.val = val;
+        this.value = value;
     }
-    
 }
 
 public class LRUCache {
-    //least recently used means no set or get action occurs
-    //to implement in O(1) time complecity, for add/delete action, I use List Data Structure, but when we do get action,first we need to find the key, in List it needs O(n) time. so we choose to use double linked list
+    //use hashmap to store the existing node and use the double linked list to store the squence; 
     int capacity;
-    HashMap<Integer, Node> keyVal= new HashMap<Integer, Node>(); 
     Node head = null;
     Node tail = null;
+    HahsMap<Integer,Node> map = new HashMap<Integer, Node>();
     public LRUCache(int capacity) {
         this.capacity = capacity;
     }
     
     public int get(int key) {
-        if(keyVal.containsKey(key)){
-            Node res = keyVal.get(key);
-            remove(res);
-            //the least recently used element is in the head of the list and the most recent one is in the end
-            AddToTail(res);
-            return res.val;
+        if(map.contains(key)){
+            Node old = map.get(key);
+            deleteNode(old);
+            addTail(old);
+            return map.get(key).value;
         }
         return -1;
     }
-    public void remove(Node res){
-        if(res.pre!=null){
-            res.pre.next = res.next;
+    public void deleteNode(Node n){
+        if(n.prev != null){
+            n.prev.next = n.next;
         }else{
-            head = res.next;
+            head = n.next;
         }
         
-        if(res.next!=null){
-            res.next.pre = res.pre;
+        if(n.next!=null){
+            n.next.prev = n.prev;
         }else{
-            tail = res.pre;
+            tail = n.prev;
         }
+        
     }
-    public void AddToTail(Node res){
-        res.pre = tail;
-        res.next = null;
-        if(tail!=null){
-            tail.next = res;
-        }
-        tail = res;
+    public void addTail(Node n){
+        n.prev = tail;
+        n.next = null;
         
+        if(tail != null){
+            tail.next = n;
+        }
+        tail = n;
         if(head == null){
             head = tail;
         }
     }
     public void set(int key, int value) {
-        if(keyVal.containsKey(key)){
-            Node old = keyVal.get(key);
-            //an important expression, if the key is the same but the value is not the same
-            old.value = value;
-            remove(old);
-            AddToTail(old);
+        Node newNode = new Node(key,value);
+        if(map.get(key)){
+            Node old = map.get(key);
+            deleteNode(old);
+            addTail(newNode);
         }else{
-            Node newNode = new Node(key,value);
-            if(keyVal.size()<capacity){
-                AddToTail(newNode);
+            if(map.size()<capacity){
+                addTail(newNode);
             }else{
-                keyVal.remove(key);
-                remove(head);
-                AddToTail(newNode);
+                deleteNode(head);
+                map.remove(head.key);
+                addTail(newNode);
             }
-            keyVal.put(key,newNode);
         }
+        map.put(key,newNode);
     }
 }
